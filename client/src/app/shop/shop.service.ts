@@ -37,7 +37,6 @@ export class ShopService {
           return response.body
         })
       )
-
   }
 
   getProduct(id: number) {
