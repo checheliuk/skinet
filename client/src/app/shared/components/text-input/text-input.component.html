@@ -1,0 +1,23 @@
+<div class="form-floating">
+    <input 
+        [ngClass]="(controlDir && controlDir.control && controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid' : 'is-valid' : null"
+        [type]="type"
+        (input)="onChange($event.target.value)"
+        (blur)="onTouched()"
+        id="{{label}}"
+        #input
+        class="form-control"
+        placeholder="{{label}}"
+    >
+    <label for="{{label}}">
+        <span *ngIf="(controlDir && controlDir.control && controlDir.control.status === 'PENDING'); else elseBlockValidation" class="fa fa-spinner fa-spin loader"></span>
+        <ng-template #elseBlockValidation>
+            <span *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched); else elseBlock">
+                <span *ngIf="controlDir.control.errors?.required">{{label}} is required</span>
+                <span *ngIf="controlDir.control.errors?.pattern">Invalid email address</span>
+                <span *ngIf="controlDir.control.errors?.emailExists">Email address is in use</span>
+            </span>
+            <ng-template #elseBlock>{{label}}</ng-template>
+        </ng-template>
+    </label>
+</div>
