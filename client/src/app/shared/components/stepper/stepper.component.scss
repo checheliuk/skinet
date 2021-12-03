@@ -1,0 +1,15 @@
+button.nav-link {
+    background: #e9ecef;
+    border-radius: 0;
+    border: none;
+    
+    &:focus,
+    &:active,
+    &.active:focus  {
+        outline: none;
+    }
+
+    &.active:hover {
+        color: white;
+    }
+}
