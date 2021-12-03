@@ -1,39 +1,41 @@
-<ng-container *ngIf="basket$ | async">
+<ng-container *ngIf="items.length > 0">
     <div class="table-responsive">
-        <table class="table">
-            <thead>
+        <table class="table table-boarderless">
+            <thead [class.thead-light]="isBasket || isOrder" class="border-0 py-2">
                 <tr>
-                    <th class="border-0" scope="col" [class.bg-light]="isBasket">
+                    <th scope="col">
                         <div class="p-2 px-3 text-uppercase">Product</div>
                     </th>
-                    <th class="border-0" scope="col" [class.bg-light]="isBasket">
+                    <th scope="col">
                         <div class="p-2 text-uppercase">Price</div>
                     </th>
-                    <th class="border-0" scope="col" [class.bg-light]="isBasket">
+                    <th scope="col">
                         <div class="p-2 text-uppercase">Quantity</div>
                     </th>
-                    <th class="border-0" scope="col" [class.bg-light]="isBasket">
+                    <th scope="col">
                         <div class="p-2 text-uppercase">Total</div>
                     </th>
-                    <th *ngIf="isBasket" class="border-0" scope="col" [class.bg-light]="isBasket">
+                    <th *ngIf="isBasket" scope="col">
                         <div class="p-2 text-uppercase">Remove</div>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of (basket$ | async).items">
+                <tr *ngFor="let item of items" class="boarder-0">
                     <th scope="row">
-                        <div class="p-2">
+                        <div class="p-0">
                             <img class="img-fluid" style="max-height: 50px;"
                                 src="{{item.pictureUrl}}" 
                                 alt="{{item.productName}}"/>
                             <div class="ml-3 d-inline-block align-middle">
                                 <h5 class="mb-0">
-                                    <a class="text-dark" routerLink="/shop/{{item.id}}">
+                                    <a class="text-dark" routerLink="/shop/{{item.id || item.productId}}">
                                         {{item.productName}}
                                     </a>
                                 </h5>
-                                <span class="text-muted font-weight-normal font-italic d-block">
+                                <span
+                                    *ngIf="item.type" 
+                                    class="text-muted font-weight-normal font-italic d-block">
                                     Type: {{item.type}}
                                 </span>
                             </div>
