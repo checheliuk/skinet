@@ -12,4 +12,7 @@ button.nav-link {
     &.active:hover {
         color: white;
     }
+    &:disabled:not(.active) {
+        color: #333;
+    }
 }
