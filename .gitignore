@@ -5,3 +5,4 @@ wwwroot
 appsettings.json
 *.db
 *.rdb
+.vs
